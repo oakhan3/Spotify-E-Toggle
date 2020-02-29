@@ -23,8 +23,6 @@ class SpotifyClient:
         "playlist-modify-public",
         "playlist-modify-private",
         "playlist-read-collaborative",
-        "user-read-private",
-        "user-read-email",
     ]
 
     def authenticate(self):
