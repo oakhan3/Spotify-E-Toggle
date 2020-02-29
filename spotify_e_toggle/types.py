@@ -13,6 +13,9 @@ class Artist:
     id: str
     name: str
 
+    def __hash__(self):
+        return hash(self.id)
+
 
 @dataclass
 class Track:
@@ -41,6 +44,13 @@ class Track:
         artist_query = " ".join(artist_names)
 
         return f"{self.name} {self.album.name} {artist_query}"
+
+    def is_appropriate_variant_of(self, other):
+        return (
+            self.name == other.name
+            and self.album.name == other.album.name
+            and set(self.artists) == set(other.artists)
+        )
 
     def __hash__(self):
         return hash(self.id)

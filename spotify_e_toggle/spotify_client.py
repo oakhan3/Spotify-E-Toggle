@@ -1,9 +1,12 @@
+import logging
 from dataclasses import dataclass
 from typing import Optional
 
 import spotipy
 
-from spotify_e_toggle.track import Track
+from spotify_e_toggle.types import Track
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -33,14 +36,18 @@ class SpotifyClient:
         tracks = []
         while next_ is not None:
             response = self.client.current_user_saved_tracks(limit=limit, offset=offset)
-
             next_ = response["next"]
             tracks += response["items"]
+            logger.info(
+                "Successfully retrieved user's saved tracks at offset %s, with limit %s",
+                limit,
+                offset,
+            )
             offset += limit
 
         return (Track.from_response(track["track"]) for track in tracks)
 
-    def search_tracks(self, query, limit=50):
-        response = self.client.search(q=query, type="track", limit=10)
-
+    def search_tracks(self, query, limit=10):
+        logger.info("Querying for %s, with limit %s", query, limit)
+        response = self.client.search(q=query, type="track", limit=limit)
         return (Track.from_response(track) for track in response["tracks"]["items"])
