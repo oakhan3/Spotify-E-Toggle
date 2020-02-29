@@ -1,13 +1,15 @@
 from dataclasses import dataclass
-from types import Optional
+from typing import Optional
 
 import spotipy
+
+from spotify_e_toggle.track import Track
 
 
 @dataclass
 class SpotifyClient:
-    username = str
-    client = Optional[spotipy.client.Spotify] = None
+    username: str
+    client: Optional[spotipy.client.Spotify] = None
 
     scopes = [
         "user-top-read",
@@ -36,4 +38,4 @@ class SpotifyClient:
             tracks += response["items"]
             offset += limit
 
-        return tracks
+        return (Track.from_response(track['track']) for track in tracks)
