@@ -4,19 +4,19 @@ from typing import List
 
 @dataclass
 class Album:
-    uri: str
+    id: str
     name: str
 
 
 @dataclass
 class Artist:
-    uri: str
+    id: str
     name: str
 
 
 @dataclass
 class Track:
-    uri: str
+    id: str
     name: str
 
     explicit: bool
@@ -26,26 +26,14 @@ class Track:
 
     @classmethod
     def from_response(cls, response):
-        album = Album(
-            response['album']['uri'],
-            response['album']['name'],
-        )
+        album = Album(response["album"]["id"], response["album"]["name"])
 
         artists = [
-            Artist(
-                artist_response['uri'],
-                artist_response['name'],
-            )
-            for artist_response in response['artists']
+            Artist(artist_response["id"], artist_response["name"])
+            for artist_response in response["artists"]
         ]
 
-        return cls(
-            response['uri'],
-            response['name'],
-            response['explicit'],
-            album,
-            artists,
-        )
+        return cls(response["id"], response["name"], response["explicit"], album, artists)
 
     @property
     def search_query(self):
@@ -53,3 +41,6 @@ class Track:
         artist_query = " ".join(artist_names)
 
         return f"{self.name} {self.album.name} {artist_query}"
+
+    def __hash__(self):
+        return hash(self.id)

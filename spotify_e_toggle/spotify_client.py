@@ -38,4 +38,9 @@ class SpotifyClient:
             tracks += response["items"]
             offset += limit
 
-        return (Track.from_response(track['track']) for track in tracks)
+        return (Track.from_response(track["track"]) for track in tracks)
+
+    def search_tracks(self, query, limit=50):
+        response = self.client.search(q=query, type="track", limit=10)
+
+        return (Track.from_response(track) for track in response["tracks"]["items"])
