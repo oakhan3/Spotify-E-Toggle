@@ -1,3 +1,9 @@
+import logging
+from pprint import pformat
+
+logger = logging.getLogger(__name__)
+
+
 def toggle_tracks(spotify_client, desired_explicit_state):
     tracks = spotify_client.get_all_user_tracks()
 
@@ -14,6 +20,11 @@ def toggle_tracks(spotify_client, desired_explicit_state):
             ):
                 track_to_desired_track_map[track] = alternative_track
                 break
+
+    logger.info(
+        "Mapping from current tracks to desired tracks:\n%s",
+        pformat(track_to_desired_track_map, indent=4),
+    )
 
     desired_tracks = track_to_desired_track_map.values()
     undesired_tracks = track_to_desired_track_map.keys()
