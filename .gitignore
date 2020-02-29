@@ -130,3 +130,5 @@ dmypy.json
 
 # spotipy
 .cache
+env.sh
+.vscode
