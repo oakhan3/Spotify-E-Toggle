@@ -1,6 +1,6 @@
 import logging
 from dataclasses import dataclass
-from typing import Optional
+from typing import List, Optional
 
 import spotipy
 
@@ -31,6 +31,12 @@ class SpotifyClient:
         token = spotipy.util.prompt_for_user_token(self.username, ",".join(self.scopes))
         self.client = spotipy.Spotify(auth=token)
 
+    def search_tracks(self, query, limit=10):
+        logger.info("Querying for %s, with limit %s", query, limit)
+        response = self.client.search(q=query, type="track", limit=limit)
+        return (Track.from_response(track) for track in response["tracks"]["items"])
+
+    # NOTE: These methods could be abstracted out to a "user's saved track manager" cls
     def get_all_user_tracks(self, limit=50, offset=0):
         next_ = ""
         tracks = []
@@ -47,7 +53,10 @@ class SpotifyClient:
 
         return (Track.from_response(track["track"]) for track in tracks)
 
-    def search_tracks(self, query, limit=10):
-        logger.info("Querying for %s, with limit %s", query, limit)
-        response = self.client.search(q=query, type="track", limit=limit)
-        return (Track.from_response(track) for track in response["tracks"]["items"])
+    def save_user_tracks(self, tracks: List[Track]):
+        track_ids = [track.id for track in tracks]
+        self.client.current_user_saved_tracks_add(track_ids)
+
+    def delete_user_tracks(self, tracks: List[Track]):
+        track_ids = [track.id for track in tracks]
+        self.client.current_user_saved_tracks_delete(track_ids)

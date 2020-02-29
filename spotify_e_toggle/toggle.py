@@ -1,6 +1,3 @@
-from pprint import pprint
-
-
 def toggle_tracks(spotify_client, desired_explicit_state):
     tracks = spotify_client.get_all_user_tracks()
 
@@ -18,4 +15,8 @@ def toggle_tracks(spotify_client, desired_explicit_state):
                 track_to_desired_track_map[track] = alternative_track
                 break
 
-    pprint(track_to_desired_track_map)
+    desired_tracks = track_to_desired_track_map.values()
+    undesired_tracks = track_to_desired_track_map.keys()
+
+    spotify_client.save_user_tracks(desired_tracks)
+    spotify_client.delete_user_tracks(undesired_tracks)
