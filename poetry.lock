@@ -285,6 +285,17 @@ requests = ">=2.20.0"
 six = ">=1.10.0"
 
 [[package]]
+category = "main"
+description = "Pretty-print tabular data"
+name = "tabulate"
+optional = false
+python-versions = "*"
+version = "0.8.6"
+
+[package.extras]
+widechars = ["wcwidth"]
+
+[[package]]
 category = "dev"
 description = "Python Library for Tom's Obvious, Minimal Language"
 name = "toml"
@@ -335,7 +346,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "1a14fb63f629734830921deacfaa160414443965f73ce33042e30b14a56bd5fa"
+content-hash = "0c92884ab19b69a56e1298f05b4b3e3905feed42a74d6665b19a4b6416323ea0"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -462,6 +473,9 @@ spotipy = [
     {file = "spotipy-2.9.0-py2-none-any.whl", hash = "sha256:353490dccd681c643d3226f69046843be221a091cefec2e6cc1541b623cd4277"},
     {file = "spotipy-2.9.0-py3-none-any.whl", hash = "sha256:f4903379e4db045e83e24a89485b99236466e70a9ad6f9e3f7a8bfe9048b1020"},
     {file = "spotipy-2.9.0.tar.gz", hash = "sha256:99d9bc15ca0e7e6b5c804b7527e2de3a3e3004cc0ca67d136347a5a6811c7f98"},
+]
+tabulate = [
+    {file = "tabulate-0.8.6.tar.gz", hash = "sha256:5470cc6687a091c7042cee89b2946d9235fe9f6d49c193a4ae2ac7bf386737c8"},
 ]
 toml = [
     {file = "toml-0.10.0-py2.7.egg", hash = "sha256:f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"},

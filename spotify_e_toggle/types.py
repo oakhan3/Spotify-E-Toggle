@@ -54,3 +54,23 @@ class Track:
 
     def __hash__(self):
         return hash(self.id)
+
+
+@dataclass
+class Playlist:
+    id: str
+    name: str
+    owner_id: str
+
+    collaborative: bool
+    public: bool
+
+    @classmethod
+    def from_response(cls, response):
+        return cls(
+            id=response["id"],
+            name=response["name"],
+            owner_id=response["owner"]["id"],
+            collaborative=response["collaborative"],
+            public=response["public"],
+        )
