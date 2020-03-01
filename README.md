@@ -1,6 +1,6 @@
 # Spotify E-Toggle
 
-Automatically toggle your Spotify saved tracks/playlists between explicit and censored!
+Toggle your Spotify saved tracks, or any of your playlists, to be explicit or censored!
 
 ## Instructions
 
