@@ -12,7 +12,7 @@ def choose_playlist_id(spotify_client, username):
     playlists = spotify_client.get_all_user_playlists()
 
     playlist_id_user_id_map = {SAVED_TRACKS_ID: username}
-    rows = [[SAVED_TRACKS_ID, "Your Saved Tracks", username, "False", "False"]]
+    rows = [[SAVED_TRACKS_ID, "Your Saved Tracks", username, False, False]]
 
     for playlist in playlists:
         if playlist.collaborative or playlist.owner_id == username:
@@ -21,8 +21,8 @@ def choose_playlist_id(spotify_client, username):
                     playlist.id,
                     playlist.name,
                     playlist.owner_id,
-                    str(playlist.collaborative),
-                    str(playlist.public),
+                    playlist.collaborative,
+                    playlist.public,
                 ]
             )
             playlist_id_user_id_map[playlist.id] = playlist.owner_id

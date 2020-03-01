@@ -10,7 +10,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -129,6 +128,6 @@ dmypy.json
 .pyre/
 
 # spotipy
-.cache
+.cache*
 env.sh
 .vscode

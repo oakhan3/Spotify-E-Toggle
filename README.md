@@ -2,6 +2,7 @@
 
 Toggle your Spotify saved tracks, or any of your playlists, to be explicit or censored!
 
+
 ## Instructions
 
 1. Set the following environment variables:
@@ -19,21 +20,14 @@ Toggle your Spotify saved tracks, or any of your playlists, to be explicit or ce
     $ export SPOTIPY_REDIRECT_URI=""
     ```
 
-1. Clone/download this repo.
+1. Download the executable [here](./dist/spotify-e-toggle)
 
-1. pip install this package in a Python 3.6.1+ env:
+    NOTE: Distributed executable is *nix/MacOS only but the script can be run from source on any OS, see below.
 
-    ```
-    $ pwd
-    .../spotify-e-toggle
-
-    $ pip install .
-    ```
-
-1. Run the script:
+1. Execute it:
 
     ```shell
-    $ ./bin/toggle-explicit.py <explicit|censored>
+    $ ./spotify-e-toggle <explicit|censored>
 
     DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.spotify.com:443
     DEBUG:urllib3.connectionpool:https://api.spotify.com:443 "GET /v1/me/playlists?limit=50&offset=0 HTTP/1.1" 200 None
@@ -58,4 +52,27 @@ Toggle your Spotify saved tracks, or any of your playlists, to be explicit or ce
     +------------------------+----------------------------+------------+-----------------+----------+
 
     What Playlist ID should be toggled: <Paste a Playlist ID here>
+    ```
+
+### Run from Source
+
+1. Clone/download this repo.
+
+1. pip install this package in a Python 3.6.1+ env:
+
+    ```shell
+    $ pwd
+    .../spotify-e-toggle
+
+    $ pip install .
+
+    # or if you want to contribute!
+    $ poetry shell
+    (spotify-e-toggle-yYRcJtfH-py3.x) $ poetry install
+    ```
+
+1. Execute the script in the env:
+
+    ```shell
+    $ ./bin/toggle-explicit.py <explicit|censored>
     ```
