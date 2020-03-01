@@ -19,6 +19,17 @@ Automatically toggle your Spotify saved tracks/playlists between explicit and ce
     $ export SPOTIPY_REDIRECT_URI=""
     ```
 
+1. Clone/download this repo.
+
+1. pip install this package in a Python 3.6.1+ env:
+
+    ```
+    $ pwd
+    .../spotify-e-toggle
+
+    $ pip install .
+    ```
+
 1. Run the script:
 
     ```shell

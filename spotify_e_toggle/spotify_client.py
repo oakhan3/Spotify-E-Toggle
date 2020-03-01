@@ -48,7 +48,7 @@ class SpotifyClient:
 
     def save_playlist_tracks(self, user_id, playlist_id, tracks: List[Track]):
         track_ids = [track.id for track in tracks]
-        self.client.user_playlist_add_tracks(user_id, playlist_id, track_ids)
+        self.client.user_playlist_add_tracks(user_id, playlist_id, track_ids, position=0)
 
     def delete_playlist_tracks(self, user_id, playlist_id, tracks: List[Track]):
         track_ids = [track.id for track in tracks]
