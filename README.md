@@ -20,7 +20,7 @@ Toggle your Spotify saved tracks, or any of your playlists, to be explicit or ce
     $ export SPOTIPY_REDIRECT_URI=""
     ```
 
-1. Download the executable [here](./dist/spotify-e-toggle)
+1. Download the executable [here](https://github.com/oakhan3/Spotify-E-Toggle/blob/master/dist/spotify-e-toggle?raw=true)
 
     NOTE: Distributed executable is *nix/MacOS only but the script can be run from source on any OS, see below.
 
